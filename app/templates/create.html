@@ -1,0 +1,52 @@
+{% extends "navbar.html" %}
+
+
+{% block body %}
+
+<br>
+
+<form class="form-group" method="post" action="/create" enctype="multipart/form-data">
+{% csrf_token %}
+    <div class="d-flex justify-content-center">
+
+        <b>
+            <div>
+                Username
+            </div>
+            
+            <div>
+                {{ form.name }}
+            </div>
+
+            E-mail
+           <div class="form-group">
+            {{ form.email }}
+           </div>
+
+            Password
+           <div class="form-group">
+                {{ form.Password }} 
+           </div>
+           
+            Image
+            <div class="form-group">
+                {{ form.image }}
+            </div>
+            
+        </b>
+
+    </div>
+    
+    <div class="d-flex justify-content-center">
+
+            <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+
+    </div>
+    
+</form>
+
+{% endblock %}
+
+        </div>
+    </body>
+</html>

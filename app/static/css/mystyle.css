@@ -1,0 +1,26 @@
+.cancelbtn{
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+.forgotpassword{
+    float: right;
+    padding-top: 16px;
+}
+.logincontainer{
+    background-color:#f8f9fa;
+    border: 1px solid red;
+    height: 500px;
+    width: 400px;
+    margin-top: 150px;
+    margin-left: 350px;
+    padding: 40px;
+}
+input[type=text], input[type=password], input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }

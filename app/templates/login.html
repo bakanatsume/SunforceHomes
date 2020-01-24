@@ -1,0 +1,46 @@
+
+{% extends "navbar.html"  %}
+
+{% block body %}
+
+<body class="container">
+
+    <form class="logincontainer" method="POST" action="/entry">
+
+        <h4 class="d-flex justify-content-center">Lets Login</h4>
+
+      <div >
+        {% csrf_token %}
+        <label ><b>E-mail</b></label>
+        <br>
+        <input type="email" placeholder="Enter Email" name="email" required>
+        <br>
+        <label><b>Password</b></label>
+        <br>
+        <input type="password" placeholder="Enter Password" name="Password" required>
+        <br>
+        <br>
+        <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+          </label>
+        <br>
+        <button type="submit">Login</button>
+
+        {% for message in messages %}
+
+          {{ message }}
+
+        {% endfor %}
+      
+      </div>
+      <br>
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" class="cancelbtn">Cancel</button>
+        <span class="forgotpassword">Forgot <a href="#">password?</a></span>
+      </div>
+    </form>
+    
+    </body>
+
+
+{% endblock %}

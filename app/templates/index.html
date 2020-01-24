@@ -1,0 +1,84 @@
+{% extends "navbar.html" %}
+
+{% block body %}
+
+<br>
+
+<table class="table table-striped">
+    <thead class="thead-dark"  scope="col">
+        <th>ID</th>
+        <th>Images</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Action</th>
+    </thead>
+
+    {% for user in users %}
+        <tr>
+            <tbody>
+                <td>{{user.id}}</td>
+                {% load static %}
+                <td><img class="rounded" width="40" src="{% static '/images/' %}{{user.image}}" /></td>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                {% load static %}
+                <td>{{user.Password}}</td>
+                <td><a href="/edit/{{user.id}}">Edit</a>||<a href="/delete/{{user.id}}">Delete</a></td>
+            </tbody>
+        </tr>
+
+    {% endfor %}
+   
+</table>
+    <div class="d-flex justify-content-center">
+
+        <a class="btn btn-primary" href="/create">Add</a>
+
+    </div>
+
+
+<form method="POST" action="/">
+    {% csrf_token %}
+<button type="submit" name="back" value="back" id="back">Back</button>  
+<input style="width:40px;" type="number" value="{{page}}" name="page" id="page" />
+<button type="submit" name="next" value="next" id="next">Next</button>  
+
+</form>
+<script>
+    $(document).ready(()=>{
+        $("search").keyup(()=>{
+            $.ajax({
+                data:{search:$("#search").val()},
+                url:'/search',
+                method:'GET',
+                success:function(data){
+                    console.log(data);
+                    $("try").not("try:first").remove();
+                    var html="";
+                    for(d of data){
+                        html+="<tr>";
+                        html+="<td>"+d.id+"<td>";
+                        html+="<td><img class='rounded' width='40' src='{% static '/images/' %}+d.image+"' /><td>";
+                        html+="<td>"+d.name+"<td>";
+                        html+="<td>"+d.email+"<td>";
+                        html+="<td>"+d.Password+"<td>";
+                        html+='<tr>';
+
+                        $("table").append(html);
+                    }
+                },error:function(error){
+                    console.log(error)
+                },complete:function(){
+                    console.log("complete")
+                }
+            })
+        })
+    })
+
+</script>
+    {% endblock %}
+
+        </div>
+    </body>
+</html>
