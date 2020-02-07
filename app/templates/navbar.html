@@ -1,37 +1,42 @@
-<html>
+<!DOCTYPE html>
     <head>
-        <title>Solar house Inventory</title>
+        <title>Sunforce Homes Inventory</title>
     </head>
 
     {% load static %}
 
     <!-- nav bar -->
 
-    <link rel="stylesheet" href="{% static '/css/style.css' %}">
-    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">   
-    <link rel="stylesheet" href="{% static '/css/mystyle.css' %}"> 
-    <body >
-        <div class="container">
-
+    <link rel="stylesheet" type="text/css" href="{% static '/css/mystyle.css' %}">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <script src="{% static '/js/ajaix.js' %}"></script>
+    <script src="{% static '/js/bootstrapcdn.js' %}"></script>
+    <script src="{% static '/js/cloudfare.js' %}"></script>
+    <script src="{% static '/js/jquery.min.js' %}"></script>
+    
+    <script src="{% static '/js/bootstrap.min.js' %}"></script>
+    <body class="container">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <a href="#" class="navbar-brand">Solar House</a>
+            <a href="/" class="navbar-brand">Sunforce Homes</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
         
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav">
-                    <a href="/create" class="nav-item nav-link">Home</a>
-                    <a href="#" class="nav-item nav-link">About</a>
-                    <a href="#" class="nav-item nav-link">Products</a>
+                    <a href="/homepage" class="nav-item nav-link">Home</a>
+                    <a href="/store" class="nav-item nav-link">Store</a>
+                    <a href="/aboutus" class="nav-item nav-link">About Us</a>                   
                     <a href="/login" class="nav-item nav-link">Login</a>
                 </div>
-                <form class="form-inline ml-auto">
-                    <input type="text" class="form-control mr-sm-2" placeholder="Search">
-                    <button type="submit" class="btn btn-outline-light">Search</button>
-                </form>
+                <div class="form-inline ml-auto">
+                    <input type="text" id="search1" class="form-control mr-sm-2" placeholder="Search">
+                    <button id="Search" class="btn btn-outline-light">Search</button> 
+                </div>
             </div>
         </nav>
+
+      
 
 
         <!-- sidebar -->
@@ -41,6 +46,109 @@
 
             {% endblock %}
 
-        </div>
+            <br>
+            
+
+            <footer class="page-footer font-small blue pt-4">
+
+                <!-- Footer Links -->
+                <div class="container-fluid text-center text-md-left">
+              
+                  <!-- Grid row -->
+                  <div class="row">
+              
+                    <!-- Grid column -->
+                    <div class="col-md-6 mt-md-0 mt-3">
+              
+                      <!-- Content -->
+                      <h5 class="text-uppercase">Sunforce Homes</h5>
+                      <p>From planning to fulfilment of photovoltaic systems, SUnforceHomes and its specialist 
+                          partners offer competent customer service. The highest quality of individual 
+                          components, especially solar modules, is at the forefront of our business.
+                           </p>
+              
+                    </div>
+                    <!-- Grid column -->
+              
+                    <hr class="clearfix w-100 d-md-none pb-3">
+              
+                    <!-- Grid column -->
+                    <div class="col-md-3 mb-md-0 mb-3">
+              
+                      <!-- Links -->
+                      <h5 class="text-uppercase">Company</h5>
+              
+                      <ul class="list-unstyled">
+                        <li>
+                          <a href="#!">Press</a>
+                        </li>
+                        <li>
+                          <a href="#!">Blog</a>
+                        </li>
+                        <li>
+                          <a href="#!">Products</a>
+                        </li>
+                        <li>
+                          <a href="#!">Premium Partner Portal</a>
+                        </li>
+                      </ul>
+              
+                    </div>
+                    <!-- Grid column -->
+              
+                    <!-- Grid column -->
+                    <div class="col-md-3 mb-md-0 mb-3">
+              
+                      <!-- Links -->
+                      <h5 class="text-uppercase">SUnforceHomes Nationwide</h5>
+              
+                      <ul class="list-unstyled">
+                        <li>
+                          <a href="#!">Rolpa</a>
+                        </li>
+                        <li>
+                          <a href="#!">Nepalgunj</a>
+                        </li>
+                        <li>
+                          <a href="#!">Pokhara</a>
+                        </li>
+                        <li>
+                          <a href="#!">Dharan</a>
+                        </li>
+                      </ul>
+              
+                    </div>
+                    <!-- Grid column -->
+              
+                  </div>
+                  <!-- Grid row -->
+              
+                </div>
+                <!-- Footer Links -->
+              
+                <!-- Copyright -->
+                <div class="footer-copyright text-center py-3">© 2020 Copyright:
+                  <a href="#"> sunforcehomes.com</a>
+                </div>
+                <!-- Copyright -->
+              
+                <hr>
+                <div class="d-flex justify-content-center">
+                    <div>
+                        <a href="#"><img src={%static "images/instagram.png" %} alt="instagram" class="socialmediaicon"></a>
+                        <a href="#"><img src={%static "images/gmail.png" %} alt="gmail" class="socialmediaicon"></a>
+                        <a href="#"><img src={%static "images/facebook.png" %} alt="facebook" class="socialmediaicon"></a>
+                        <a href="#"><img src={%static "images/twitter.png" %} alt="twitter" class="socialmediaicon"></a> 
+                    </div>
+                       
+                </div>
+                <div class="d-flex justify-content-center">
+                    Terms and Conditions | Privacy Policy © 2018 SunErgy. All rights reserved. 
+                </div>
+                <hr>
+            </footer>
+        
+      
     </body>
+    
 </html>

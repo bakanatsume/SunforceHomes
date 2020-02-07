@@ -1,0 +1,138 @@
+{% extends "navbar.html" %}
+
+{% load static %}
+
+
+
+{% block body %}
+
+
+<br>
+
+<div id="cover" class="carousel slide" data-ride="carousel">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#cover" data-slide-to="0" class="active"></li>
+    <li data-target="#cover" data-slide-to="1"></li>
+    <li data-target="#cover" data-slide-to="2"></li>
+  </ul>
+  
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src={% static "images/solar.jpg" %} alt="Solar panel">
+      <div class="carousel-caption">
+        <h3>Dolpa District</h3>
+        <p>We had such a great time providing solar lights to all people!</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src={% static "images/solar1.jpg" %} alt="Solar panel">
+      <div class="carousel-caption">
+        <h3>Rolpa District</h3>
+        <p>We had such a great time providing solar lights to all people!</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src={% static "images/solar2.jpg" %} alt="solar panel">
+      <div class="carousel-caption">
+        <h3>Rolpa District</h3>
+        <p>We had such a great time providing solar lights to all people!</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#cover" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#cover" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+<br>
+<div class="icons">
+  <img src={% static "images/canadasolar.jpg" %} alt="">
+  <img src={% static "images/goodwe.jpg" %} alt="">
+  <img src={% static "images/javasolar.jpg" %} alt="">
+  <img src={% static "images/pylon.jpg" %} alt="">
+  <img src={% static "images/victon.jpg" %} alt="">
+
+</div>
+<br>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">SUNFORCE HOMES</h1>
+    <p class="lead">You are heartly welcome to be part of our company.We offer various kinds of solar products.
+      
+    </p>
+  </div>
+</div>
+<br>
+<div>
+  <div> 
+    <h1 class="content1">
+    <img class="icon" src={% static "images/solarbatteriesicon.jpg" %} alt="panel icon"> &nbsp;Batteries 
+  </h1>
+  </div>
+  <div>
+    <h1 class="content2">
+    <img class="icon" src={% static "images/solarpanelicon.jpg" %} alt="panel icon">&nbsp;Panels
+    </h1>
+  </div>
+</div>
+<div>
+  <div>
+    <h1 class="content1">
+    <img class="icon" src={% static "images/solarchargecontroller.jpg" %} alt="panel icon">&nbsp;Charge Controllers
+    </h1>
+  </div>
+  <div>
+    <h1 class="content2">
+    <img class="icon" src={% static "images/solarinvertericon.jpg" %} alt="panel icon">&nbsp;Inverter
+    </h1>  
+  </div>
+  
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">SUNFORCE HOMES offers tailor-made solar energy solutions</h5>
+        <p class="card-text">Sunforcehomes offers tailor-made solutions ranging from individual solar 
+          panels to complete PV systems. For more than 37 years,  offers tailor-made solutions ranging 
+           has continually shaped the development of solar energy as a source of regenerative energy. 
+           This Nepelese company with its traditional background is one of the pioneers in the field of 
+           solar technology and one of the national leaders in the field of energy production from sunlight. 
+           Sunforcehomes is a complete solar energy system provider that offers everything from consulting to
+            maintenance under one roof. Whether supplying self-consumption systems to the commercial sector,
+             private households that generate their own electricity via a complete photovoltaic system, or
+              even entire solar parks. Sunforcehomes can help develop a tailor-made, personalized concept that
+               fits your needs and energy requirements while considering localized conditions.We ....</p>
+        <a href="#" class="btn btn-primary">Read More...</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Photovoltaics – the future of solar energy generation</h5>
+        <p class="card-text">The idea of converting solar energy into usable energy from a solar cell with 
+          the help of semiconductors has changed our world. Photovoltaics gives us the opportunity to say 
+          goodbye to energy from dwindling supplies of fossil fuels. Get an experienced partner such as
+           SUNFORCE HOMES on your side, if you want to take a responsible step into the future with your company
+            or private household by switching to renewable energies, and at the same time saving noticeably on
+             your energy costs.
+            Since 2000, we have been committed to making solar energy a real alternative to conventional 
+            power generation. We are proud to provide products which helps supply solar power to over a million
+             people a year, with more than 4.2 GW of installed capacity. We work together with more than 1,000
+              specialist partners nationwide, from solar engineers to electrical contractors to the roofer.
+               Together we also develop reliable photovoltaic systems with or without solar power storage!</p>
+        <a href="#" class="btn btn-primary">Read More...</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

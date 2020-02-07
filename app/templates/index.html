@@ -1,36 +1,105 @@
 {% extends "navbar.html" %}
 
-{% block body %}
+{% load static %}
 
+{% block body %}
+<div id="modal-delete" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Delete</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete.</p>
+        </div>
+        <div class="modal-footer">
+        <form id="form-delete" method="POST" action="">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- <div class="modal-logout" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">LogOut</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to logout??</p>
+        </div>
+        <div class="modal-footer">
+          <form action="form-logout" method="POST" action="">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">LogOut</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> -->
 <br>
 
-<table class="table table-striped">
-    <thead class="thead-dark"  scope="col">
-        <th>ID</th>
-        <th>Images</th>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Password</th>
-        <th>Action</th>
-    </thead>
+<div >
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/product">Products</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="/logout">LogOut</a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Hie {{ logged.name }} !!</a>
+        </li>
 
-    {% for user in users %}
-        <tr>
-            <tbody>
-                <td>{{user.id}}</td>
-                {% load static %}
-                <td><img class="rounded" width="40" src="{% static '/images/' %}{{user.image}}" /></td>
-                <td>{{user.name}}</td>
-                <td>{{user.email}}</td>
-                {% load static %}
-                <td>{{user.Password}}</td>
-                <td><a href="/edit/{{user.id}}">Edit</a>||<a href="/delete/{{user.id}}">Delete</a></td>
-            </tbody>
-        </tr>
+        
+      </ul>
 
-    {% endfor %}
-   
-</table>
+    <table class="table table-striped">
+        <thead class="thead-dark"  scope="col">
+            <th>ID</th>
+            <th>Images</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Action</th>
+        </thead>
+    
+        {% for user in users %} 
+            <tr>
+                <tbody>
+                    <td>{{user.id}}</td>
+                    {% load static %}
+                    <td><img class="rounded" width="40" src="{% static '/images/' %}{{user.image}}" /></td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    {% load static %}
+                    <td>{{user.Password}}</td>
+                    <td><a href="/edit/{{user.id}}">Edit</a>||<a class="delete" data-id='{{ user.id }}' href="/delete/{{user.id}}">Delete</a></td>
+                </tbody>
+            </tr>
+    
+        {% endfor %}
+       
+    </table>
+
+
+</div>
+
     <div class="d-flex justify-content-center">
 
         <a class="btn btn-primary" href="/create">Add</a>
@@ -40,30 +109,44 @@
 
 <form method="POST" action="/">
     {% csrf_token %}
-<button type="submit" name="back" value="back" id="back">Back</button>  
-<input style="width:40px;" type="number" value="{{page}}" name="page" id="page" />
-<button type="submit" name="next" value="next" id="next">Next</button>  
+<button class="btn btn-secondary" type="submit" name="back" value="back" id="back">Back</button>  
+<input class="border border-success" style="width:40px;" type="number" value="{{page}}" name="page" id="page" />
+<button class="btn btn-secondary" type="submit" name="next" value="next" id="next">Next</button>  
 
 </form>
+
 <script>
     $(document).ready(()=>{
-        $("search").keyup(()=>{
+        $('.delete').on('click',function(e){
+            e.preventDefault();
+            var id=$(this).data('id')
+            $('#form-delete').attr('action','/delete/'+id)
+            $('#modal-delete').modal('show')
+        })
+        // $('.logout').on('click',function(e){
+        //     e.preventDefault();
+        //     var id=$(this).data('id')
+        //     $('#form-logout').attr('action','/logout')
+        //     $('#modal-logout').modal('show')
+        // })
+        $('#Search').click(()=>{
             $.ajax({
-                data:{search:$("#search").val()},
+                data:{search:$("#search1").val()},
                 url:'/search',
                 method:'GET',
                 success:function(data){
                     console.log(data);
-                    $("try").not("try:first").remove();
+                    $("tr").not("tr:first").remove();
                     var html="";
                     for(d of data){
                         html+="<tr>";
-                        html+="<td>"+d.id+"<td>";
-                        html+="<td><img class='rounded' width='40' src='{% static '/images/' %}+d.image+"' /><td>";
-                        html+="<td>"+d.name+"<td>";
-                        html+="<td>"+d.email+"<td>";
-                        html+="<td>"+d.Password+"<td>";
-                        html+='<tr>';
+                        html+="<td>"+d.id+"</td>";
+                        html+="<td><img class='rounded' width='40' src='{% static 'images/' %}"+d.image+"'</td>"
+                        html+="<td>"+d.name+"</td>";
+                        html+="<td>"+d.email+"</td>";
+                        html+="<td>"+d.Password+"</td>";
+                        html+="<td><a href='/edit/"+d.id+"'>Edit</a>||<a href='/delete/'"+d.id+"'>Delete</a></td>";
+                        html+='</tr>';
 
                         $("table").append(html);
                     }
@@ -81,4 +164,3 @@
 
         </div>
     </body>
-</html>

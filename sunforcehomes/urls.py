@@ -24,5 +24,17 @@ urlpatterns = [
     path('delete/<int:id>',views.delete),
     path('create',views.create),
     path('login/',views.login),
-    path('entry',views.entry)
+    path('aboutus',views.aboutus),
+    path('homepage',views.homepage),
+    path('product',views.product),
+    path('addproduct',views.addproduct),
+    path('entry',views.entry),
+    path('search',views.Search),
+    path('ProductSearch',views.ProductSearch),
+    path('editproduct/<int:id>',views.editproduct),
+    path('updateproduct/<int:id>',views.updateproduct),
+    path('deleteproduct/<int:id>',views.deleteproduct),
+    path('store',views.store),
+    path('logout',views.logout),
+    
 ]
