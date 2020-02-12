@@ -13,8 +13,32 @@
         <li class="nav-item">
           <a class="nav-link active" href="#">Products</a>
         </li>
+        &nbsp;&nbsp;
         <li class="nav-item">
-            <a class="nav-link " href="/logout">LogOut</a>
+            <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal">Log Out</button>
+      
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+              <div class="modal-dialog">
+              
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Are You Sure Want To Log Out???</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    
+                  </div>
+                  <div class="modal-body">
+                    <p>This wil redirect you to homepage.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <a class="nav-link " href="/logout">LogOut</a>
+                    
+                  </div>
+                </div>
+                
+              </div>
+            </div>
           </li>
         
           <li class="nav-item">

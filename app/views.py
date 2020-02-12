@@ -7,6 +7,7 @@ from django.http import HttpResponse,JsonResponse
 from app.authenticator import Authenticator
 from django.contrib import messages
 
+#--------------------------------------------admin dashboard-----------------------------#
 @Authenticator.valid_user
 def index(request):
     limit=3
@@ -29,6 +30,8 @@ def index(request):
         users=User.objects.raw("select * from user limit 3 offset 0")
 
     return render(request,"index.html",{'users':users,'page':page,'logged':logged})
+    
+#---------------------------- user add ----------------------------------------------------#
 
 @Authenticator.valid_user
 def create(request):
@@ -40,19 +43,22 @@ def create(request):
         form=UserForm()
     return render(request,'create.html',{'form':form})
 
+#--------------------------------------------- User Edit-----------------------------#
+
 
 def edit(request,id):
     user = User.objects.get(id=id)
     return render(request,'edit.html',{'user':user})
 
 
+#--------------------------------------------- User Update-----------------------------#
 def update(request,id):
     user=User.objects.get(id=id)
     form=UserForm(request.POST,request.FILES,instance=user)
     form.save()
     return redirect('/')
 
-
+#--------------------------------------------- User Delete-----------------------------#
 def delete(request,id):
     User.objects.get(id=id).image.delete()
     user=User.objects.get(id=id)
@@ -60,18 +66,27 @@ def delete(request,id):
     return redirect('/')
 
 
+
+#--------------------------------------------- User Search -----------------------------#
 def Search(request):
     users=User.objects.filter(name__icontains=request.GET['search']).values()
     return JsonResponse(list(users),safe=False)
 
+
+#--------------------------------------------- Product Search-----------------------------#
 def ProductSearch(request):
     products=Product.objects.filter(name__icontains=request.GET['search']).values()
     return JsonResponse(list(products),safe=False)
 
+#--------------------------------------------- Login -----------------------------#
 def login(request):
-    return render(request,'login.html')
+    if 'email' not in request.session:
+        return render(request,'login.html')
+    else:
+        return redirect('/')
 
 
+#--------------------------------------------- session created-----------------------------#
 def entry(request):
     usermail=request.session['email']=request.POST['email']
     password=request.POST['Password']
@@ -88,20 +103,36 @@ def entry(request):
 
     return redirect('/')
 
+
+#--------------------------------------------- LogOut -----------------------------#
+
+@Authenticator.valid_user
+def logout(request):
+    request.session.flush()
+    return redirect("/login")
+
+#--------------------------------------------- Store Page -----------------------------#
 def store(request):
     products=Product.objects.all()
     return render(request,'store.html',{'products':products})
 
+
+#--------------------------------------------- About Us Page -----------------------------#
 def aboutus(request):
     return render(request,'aboutus.html')
 
+
+#--------------------------------------------- Homepage -----------------------------#
 def homepage(request):
     return render(request,'homepage.html')
 
+
+#--------------------------------------------- Product Dashboard -----------------------------#
+
 @Authenticator.valid_user
 def product(request):
-    limit=3
-    page=10
+    limit=10
+    page=1
     try:
         logged=User.objects.get(email=request.session['email'])
     
@@ -120,6 +151,9 @@ def product(request):
         product=Product.objects.raw("select * from Product limit 10 offset 0")
     return render(request,"product.html",{'product':product,'page':page,'logged':logged})
 
+
+#--------------------------------------------- AddProduct -----------------------------#
+
 @Authenticator.valid_user
 def addproduct(request):
     if request.method=="POST":
@@ -130,17 +164,20 @@ def addproduct(request):
         form=ProductForm()
     return render(request,'addproduct.html',{'form':form})
 
+#--------------------------------------------- Product Edit -----------------------------#
 
 def editproduct(request,id):
     pro = Product.objects.get(id=id)
     return render(request,'editproduct.html',{'product':pro})
 
-
+#--------------------------------------------- Product update -----------------------------#
 def updateproduct(request,id):
     pro=Product.objects.get(id=id)
     form=ProductForm(request.POST,request.FILES,instance=pro)
     form.save()
     return redirect('/product')
+
+#--------------------------------------------- Product Delete -----------------------------#
 
 def deleteproduct(request,id):
     Product.objects.get(id=id).image.delete()
@@ -148,7 +185,3 @@ def deleteproduct(request,id):
     product.delete()
     return redirect('/product')
 
-@Authenticator.valid_user
-def logout(request):
-    request.session.flush()
-    return redirect("/login")
