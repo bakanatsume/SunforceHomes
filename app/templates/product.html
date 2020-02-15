@@ -1,11 +1,35 @@
-{% extends "navbar.html" %}
+{% extends "backendnavbar.html" %}
 
 {% load static %}
 
 {% block body %}
+<div id="modal-delete" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete.</p>
+      </div>
+      <div class="modal-footer">
+      <form id="form-delete" method="POST" action="">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">Delete</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
 <br>
 
-<div >
+
     <ul class="nav nav-tabs">
         <li class="nav-item">
           <a class="nav-link" href="/">Users</a>
@@ -45,9 +69,9 @@
             <a class="nav-link disabled" href="#">Hie {{ logged.name }} !!</a>
           </li>
       </ul>
-
-    <table class="table table-striped">
-        <thead class="thead-dark"  scope="col">
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover table-condensed">
+        <thead class="thead-dark" scope="col">
             <th>SN</th>
             <th>Images</th>
             <th>Name</th>
@@ -68,7 +92,7 @@
                     {% load static %}
                     <td>{{ Product.company }}</td>
                     <td>{{ Product.wattpeak }}</td>
-                    <td><a href="/editproduct/{{Product.id}}">Edit</a>||<a href="/deleteproduct/{{Product.id}}">Delete</a></td>
+                    <td><a href="/editproduct/{{Product.id}}">Edit</a>||<a class="delete" data-id='{{ Product.id }}' href="/deleteproduct/{{Product.id}}">Delete</a></td>
                 </tbody>
             </tr>
     
@@ -96,6 +120,12 @@
 
 <script>
     $(document).ready(()=>{
+        $('delete').on('click',function(e){
+          e.preventDefault();
+          var id=$(this).data('id')
+          $('#form-delete').attr('action','/delete/'+id)
+          $('#modal-delete').modal('show')
+      })
         $('#Search').click(()=>{
             $.ajax({
                 data:{search:$("#search1").val()},

@@ -3,68 +3,38 @@
 
 {% block body %}
 
-<body class="container">
-
-   
-    <form class="logincontainer" method="POST" action="/entry">
-
-        <h4 class="d-flex justify-content-center">Lets Login</h4>
-
-      <div >
-        {% csrf_token %}
-        <label ><b>E-mail</b></label>
-        <br>
-        <input type="email" placeholder="Enter Email" name="email" required>
-        <br>
-        <label><b>Password</b></label>
-        <br>
-        <input type="password" placeholder="Enter Password" name="Password" required>
-        <br>
-        <br>
-       
-        <button type="submit" class="btn btn-info btn-lg">Login</button>
-
-        {% for message in messages %}
-
-          {{ message }}
-
-        {% endfor %}
-      
-      </div>
-      <br>
-      <div class="container" style="background-color:#f1f1f1">
-        <button type="button" class="cancelbtn">
-          <a class="cancelhref" href="/homepage">Cancel</a> 
-        </button>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Forgot Password?</button>
-      
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
-          <div class="modal-dialog">
-          
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">Contact To Admin</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+<body class="loginbody"> 
+<div class="container">
+	<div class="login-container">
+            <div id="output"></div>
+            <div class="avatar"></div>
+            <div class="form-box">
+                <form method="POST" action="/entry">
+                  {% csrf_token %}
+                  
+                  <br>
+                  <input type="email" placeholder="Enter Email" name="email" required>
+                  <br>
                 
-              </div>
-              <div class="modal-body">
-                <p>Please contact to admin.</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
+                  <br>
+                  <input type="password" placeholder="Enter Password" name="Password" required>
+                  <br>
+                  <br>
+                 
+                  <button class="btn btn-info btn-lg" type="submit">Login</button>
+
+                  {% for message in messages %}
+          
+                    {{ message }}
+          
+                  {% endfor %}
+                  
+                </form>
             </div>
-            
-          </div>
         </div>
-      </div>
-    </form>
-    
-    </body>
+        
+</div>
+</body>
 
 
 {% endblock %}

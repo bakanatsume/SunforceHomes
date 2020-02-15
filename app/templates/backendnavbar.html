@@ -5,22 +5,16 @@
 
     {% load static %}
 
-    <!-- nav bar -->
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie-edge">
     <link rel="stylesheet" type="text/css" href="{% static '/css/mystyle.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static '/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static '/js/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
     <script src="{% static '/js/ajaix.js' %}"></script>
     <script src="{% static '/js/bootstrapcdn.js' %}"></script>
     <script src="{% static '/js/cloudfare.js' %}"></script>
     <script src="{% static '/js/jquery.min.js' %}"></script>
-    <script  src="{% static '/js/bootstrap.min.css' %}"></script>
-    <script src="{% static '/js/jquery-1.11.1.min.js' %}"></script>
-    
-    
     
     <script src="{% static '/js/bootstrap.min.js' %}"></script>
     <body class="home page-template page-template-elementor_header_footer page page-id-395 
@@ -37,16 +31,19 @@
                     <a href="/homepage" class="nav-item nav-link">Home</a>
                     <a href="/store" class="nav-item nav-link">Store</a>
                     <a href="/aboutus" class="nav-item nav-link">About Us</a>                   
-                    <a href="/login" class="nav-item nav-link">Login</a>
+                    
                 </div>
-               
+                <div class="form-inline ml-auto">
+                    <input type="text" id="search1" class="form-control mr-sm-2" placeholder="Search">
+                    <button id="Search" class="btn btn-outline-light">Search</button> 
+                </div>
             </div>
         </nav>
 
       
 
 
-        <!-- sidebar -->
+        
 
             {% block body %}
 
@@ -58,16 +55,16 @@
 
             <footer class="page-footer font-small blue pt-4">
 
-                <!-- Footer Links -->
+               
                 <div class="container-fluid text-center text-md-left">
               
-                  <!-- Grid row -->
+                  
                   <div class="row">
               
-                    <!-- Grid column -->
+                  
                     <div class="col-md-6 mt-md-0 mt-3">
               
-                      <!-- Content -->
+                    
                       <h5 class="text-uppercase">Sunforce Homes</h5>
                       <p>From planning to fulfilment of photovoltaic systems, SUnforceHomes and its specialist 
                           partners offer competent customer service. The highest quality of individual 
@@ -75,14 +72,14 @@
                            </p>
               
                     </div>
-                    <!-- Grid column -->
+                    
               
                     <hr class="clearfix w-100 d-md-none pb-3">
               
-                    <!-- Grid column -->
+                    
                     <div class="col-md-3 mb-md-0 mb-3">
               
-                      <!-- Links -->
+                      
                       <h5 class="text-uppercase">Company</h5>
               
                       <ul class="list-unstyled">
@@ -101,12 +98,12 @@
                       </ul>
               
                     </div>
-                    <!-- Grid column -->
+                    
               
-                    <!-- Grid column -->
+                    
                     <div class="col-md-3 mb-md-0 mb-3">
               
-                      <!-- Links -->
+                     
                       <h5 class="text-uppercase">SUnforceHomes Nationwide</h5>
               
                       <ul class="list-unstyled">
@@ -125,19 +122,19 @@
                       </ul>
               
                     </div>
-                    <!-- Grid column -->
+                    
               
                   </div>
-                  <!-- Grid row -->
+                 
               
                 </div>
-                <!-- Footer Links -->
               
-                <!-- Copyright -->
+              
+               
                 <div class="footer-copyright text-center py-3">© 2020 Copyright:
                   <a href="#"> sunforcehomes.com</a>
                 </div>
-                <!-- Copyright -->
+              
               
                 <hr>
                 <div class="d-flex justify-content-center">

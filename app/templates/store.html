@@ -4,17 +4,13 @@
 
 
 {% block body %}
-
+<body class="container-fluid">
+  
 
 <hr>
 <h3 class="h3 d-flex justify-content-center">Welcome to our Store</h3>
 <hr>
-<div class="">
-	
-	<div class="block">
-      <div class="row">
-        <div class="Productcontent">
-          <img class="img-left" src="http://assets.barcroftmedia.com.s3-website-eu-west-1.amazonaws.com/assets/images/recent-images-11.jpg"/>
+<div class="container-fluid">
           <div class="content-heading"><h3>Simple. Fast. Ordered. – The SunforceHomes SOLAR Online Shop.</h3></div>
           <p>The new SunforceHomes SOLAR Shop contains more than 1,500 quality products. Our extensive portfolio offers a large selection of products for every customer requirement and
                for all PV plant sizes. Whether photovoltaic systems for residential buildings, commercial buildings or PV power plants - the Sunforce SOLAR Shop offers you the right
@@ -30,13 +26,10 @@
             Thanks to a well-designed navigation system and clear layout you can enjoy a user-friendly experience. In addition, the SunforceHomes SOLAR Shop is optimized for mobile 
             use with the main focus on navigation and relevant content. It is fully functional for all mobile devices and makes shopping really easy while on the road.
           </p>
-            
-        </div>
-       </div>
-    </div> 
 </div>
 <hr>
-<h3 class="h3 d-flex justify-content-center"> Our Products </h3>
+<div class="container-fluid">
+<h3 class="h3 d-flex justify-content-center"> Our Store Products </h3>
 <hr>
 <div class="row">
 {% for Product in products %}
@@ -62,6 +55,6 @@
         </div>
         {% endfor %}
     </div>
-
-
+  </div>
+</body>
 {% endblock %}

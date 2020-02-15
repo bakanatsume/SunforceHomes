@@ -10,7 +10,7 @@ from django.contrib import messages
 #--------------------------------------------admin dashboard-----------------------------#
 @Authenticator.valid_user
 def index(request):
-    limit=3
+    limit=5
     page=1
     try:
         logged=User.objects.get(email=request.session['email'])
@@ -19,15 +19,17 @@ def index(request):
         request.session.flush()
         return redirect('/login')
     if request.method=="POST":
-        if "next" in request.POST:
-            page=(int(request.POST['page'])+1)
-        elif "back" in request.POST:
+        if "back" in request.POST:
             page=(int(request.POST['page'])-1)
-        tempoffset=page-1    
-        offset=tempoffset*page
-        users=User.objects.raw("select * from user limit 3 offset %s",[offset])
+        elif "next" in request.POST:
+            page=(int(request.POST['page'])+1)
+        tempoffset=page-1
+        offset=0
+        if tempoffset>0:
+            offset=tempoffset*limit
+        users=User.objects.raw("select * from user limit 5 offset %s",[offset])
     else:
-        users=User.objects.raw("select * from user limit 3 offset 0")
+        users=User.objects.raw("select * from user limit 5 offset 0")
 
     return render(request,"index.html",{'users':users,'page':page,'logged':logged})
     
@@ -83,10 +85,12 @@ def login(request):
     if 'email' not in request.session:
         return render(request,'login.html')
     else:
+        del request.session['email']
         return redirect('/')
 
 
 #--------------------------------------------- session created-----------------------------#
+
 def entry(request):
     usermail=request.session['email']=request.POST['email']
     password=request.POST['Password']
@@ -131,7 +135,7 @@ def homepage(request):
 
 @Authenticator.valid_user
 def product(request):
-    limit=10
+    limit=5
     page=1
     try:
         logged=User.objects.get(email=request.session['email'])
@@ -140,15 +144,17 @@ def product(request):
         request.session.flush()
         return redirect('/login')
     if request.method=="POST":
-        if "next" in request.POST:
-            page=(int(request.POST['page'])+1)
-        elif "back" in request.POST:
+        if "back" in request.POST:
             page=(int(request.POST['page'])-1)
-        tempoffset=page-1    
-        offset=tempoffset*page
-        product=Product.objects.raw("select * from Product limit 10 offset %s",[offset])
+        elif "next" in request.POST:
+            page=(int(request.POST['page'])+1)
+        tempoffset=page-1 
+        offset=0
+        if tempoffset > 0:   
+            offset=tempoffset*limit
+        product=Product.objects.raw("select * from Product limit 5 offset %s",[offset])
     else:
-        product=Product.objects.raw("select * from Product limit 10 offset 0")
+        product=Product.objects.raw("select * from Product limit 5 offset 0")
     return render(request,"product.html",{'product':product,'page':page,'logged':logged})
 
 
