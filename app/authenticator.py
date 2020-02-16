@@ -11,6 +11,6 @@ class Authenticator:
                 return function (request)
                
             except:
-                messages.warning(request,"Invalid Login")
+                
                 return redirect('/login')
         return wrap

@@ -4,7 +4,7 @@
 {% load static %}
 
 {% block body %}
-
+<!---------------------------------------- delete model ------------------------------------------------>
 <body class="container">
   
 <div id="modal-delete" class="modal" tabindex="-1" role="dialog">
@@ -31,7 +31,7 @@
     </div>
   </div>
 <br>
-
+<!---------------------------------------------------- inside navbar  ------------------------------------->
 <div >
     <ul class="nav nav-tabs">
         <li class="nav-item">
@@ -43,8 +43,8 @@
         &nbsp; &nbsp; &nbsp; &nbsp;
         <li class="nav-item">
           <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal">Log Out</button>
-      
-          <!-- Modal -->
+        </li>
+<!------------------------------------------ Logout Modal ----------------------------------------->
           <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog">
             
@@ -66,13 +66,16 @@
               
             </div>
           </div>
-          </li>
+        
+    <!-------------------------------------- to display username from email ------------------------------------>
         <li class="nav-item">
           <a class="nav-link disabled" href="#">Welcome back {{ logged.name }} !!</a>
         </li>
 
         
       </ul>
+      <!------------------------------------------- responsive table --------------------------------------------->
+
     <div class="table-responsive">
 
       <table class="table table-striped table-bordered table-hover table-condensed">
@@ -115,7 +118,7 @@
 
     </div>
 
-
+<!----------------------------------------------- Pagination --------------------------------------------->
 <form method="POST" action="/">
     {% csrf_token %}
 <button class="btn btn-secondary" type="submit" name="back" value="back" id="back">Back</button>  
@@ -123,7 +126,7 @@
 <button class="btn btn-secondary" type="submit" name="next" value="next" id="next">Next</button>  
 
 </form>
-
+<!------------------------------------------- search script  and deletescript ------------------------------------->
 <script>
     $(document).ready(()=>{
         $('.delete').on('click',function(e){
